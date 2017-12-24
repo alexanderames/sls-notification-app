@@ -1,4 +1,4 @@
-us-west-2'use strict';
+'use strict';
 
 module.exports.sendReminderDaily = (event, context, callback) => {
 	var AWS = require('aws-sdk');
