@@ -1,0 +1,28 @@
+service: serverless-node-text-message-app
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  environment:
+    # Replace these environment variables with your Twilio and Google values
+    TWILIO_ACCOUNT_SID: ACd822ca6be53e57f3f112bf390f2d736d
+    TWILIO_AUTH_TOKEN: f6459141218b206cf3f522e0869f9d39
+    TWILIO_PHONE_NUMBER: 6023629109
+    GOOGLE_RECAPTCHA_TOKEN: 6LfeLj4UAAAAAHZjmcgD5HYKgY04-eSXJXKyNqXG
+
+functions:
+  validateRecaptchaSendSms:
+    handler: handler.validateAndSend
+    events:
+      - http:
+          path: api/sendSms
+          method: post
+          integration: lambda
+          cors: true
+
+plugins:
+  - serverless-finch
+
+custom:
+  client:
+    bucketName: node-txtmsg-app-20171226
